@@ -32,7 +32,14 @@ $errorincorrect = '<div class="alert alert-dismissable alert-danger"><button typ
 			$alert = '<div class="alert alert-dismissable alert-success"><button type="button" class="close" data-dismiss="alert">×</button>' . $data . '</div>';
 		}
 		
-		$listgroup = '<div class="list-group"> <a href="chat.php" class="list-group-item"> <h4 class="list-group-item-heading">Chat</h4> <p class="list-group-item-text">Just a group chat</p></a><a href="addteam.php" class="list-group-item"> <h4 class="list-group-item-heading">Add Team</h4> <p class="list-group-item-text">Fill in information and upload an image about a team</p> </a> <a href="viewteams.php" class="list-group-item"> <h4 class="list-group-item-heading">View Teams</h4> <p class="list-group-item-text">See a list of the added teams</p> </a><a href="matchscout.php" class="list-group-item"> <h4 class="list-group-item-heading">Match Scout</h4> <p class="list-group-item-text">Keep statistics about teams</p> </a><a href="adduser.php" class="list-group-item"> <h4 class="list-group-item-heading">Add User</h4> <p class="list-group-item-text">Add user to database</p> </a></div>';
+		$listgroup = '<div class="list-group"> 
+		<a href="chat.php" class="list-group-item"> <h4 class="list-group-item-heading">Chat</h4> <p class="list-group-item-text">Just a group chat</p></a>
+		<a href="addteam.php" class="list-group-item"> <h4 class="list-group-item-heading">Add Team</h4> <p class="list-group-item-text">Fill in information and upload an image about a team</p> </a> 
+		<a href="viewteams.php" class="list-group-item"> <h4 class="list-group-item-heading">View Teams</h4> <p class="list-group-item-text">See a list of the added teams</p> </a>
+		<a href="matchscout.php" class="list-group-item"> <h4 class="list-group-item-heading">Match Scout</h4> <p class="list-group-item-text">Keep statistics about teams</p> </a>
+		<a href="adduser.php" class="list-group-item"> <h4 class="list-group-item-heading">Add User</h4> <p class="list-group-item-text">Add user to database</p> </a>
+		<a href="sql.php" class="list-group-item"> <h4 class="list-group-item-heading">SQL Terminal</h4> <p class="list-group-item-text">Control the database</p> </a>
+		</div>';
 		$this->main($alert . $listgroup);
 	}
 
@@ -204,6 +211,38 @@ $errorincorrect = '<div class="alert alert-dismissable alert-danger"><button typ
 		$this->main($error . $form);
 	}
 
+	public function sql($response) {
+		$form = '
+	
+	      <div class="row">
+        <div class="col-lg-6">
+          <div class="well">
+            <form class="form-horizontal" method="post" action="sql.php" autocomplete="off">
+              <fieldset>
+                <legend>SQL Terminal</legend>
+                <div class="form-group">
+                  <label for="sql" class="col-lg-2 control-label">SQL Script</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" placeholder="" name="sql" autocorrect="off">
+                  </div>
+                </div>
+			    
+                <div class="form-group">
+                  <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary">Execute</button>       
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+<hr>' . $response . '
+
+          </div>
+        </div>
+      </div>
+	
+      	';
+		$this->main($form);
+	}
 
 }
 ?>

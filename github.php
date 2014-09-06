@@ -1,3 +1,3 @@
 <?php
 
-print(exec("git pull"));
+echo exec("git pull");
