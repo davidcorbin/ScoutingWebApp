@@ -1,6 +1,6 @@
 <?php
 	//Force redirect to login
-	header("Location: login.php");
+	header("Location: choose.php");
 	
 	//Kill the process (forcing immediate redirect)
 	die();

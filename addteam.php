@@ -45,6 +45,13 @@ if (!empty($_POST)) {
 		$f = isset($_POST["autohigh"]) ? 1 : 0;
 		$g = isset($_POST["autolow"]) ? 1 : 0;
 		$h = isset($_POST["tbauto"]) ? 1 : 0;
+		
+		// Make sure there is a string using a space
+		if ($_POST["link"] == "") 
+			$_POST["link"] = " ";
+		if ($_POST["comments"] == "") 
+			$_POST["comments"] = " ";
+		
 		$database->query("INSERT INTO teams(number, status, highgoal, lowgoal, passing, receiving, truss, autohigh, autolow, twoballauto, image, comments) VALUES (" . $_POST["teamnumber"] . ",'" . $_POST["status"] . "'," . $a . "," . $b . "," . $c . "," . $d . "," . $e . "," . $f . "," . $g . "," . $h . ",'" . $_POST["link"] . "','" . mysqli_real_escape_string($_POST["comments"]) . "')");
 		$html->choose("<span class='glyphicon glyphicon-floppy-saved'></span>&nbsp;&nbsp; Successfully added team");
 	}
