@@ -40,7 +40,7 @@ $table = "<div style='overflow:auto;' class='table-responsive'><table class='tab
 </tr>
 </thead><tbody>";
 
-$result = $database->fetch("SELECT * FROM teams");
+$result = $database->fetch("SELECT * FROM teams ORDER BY number");
 
 for ($i = 0; $i < count($result); $i++) {
 

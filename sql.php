@@ -25,7 +25,7 @@ if (!isset($check)) {
 // If the form has been submitted 
 $result = "";
 if (isset($_POST["sql"])) {
-$result = $database->query($_POST["sql"]);
+	$result = $database->query($_POST["sql"]);
 }
 
 $html->sql($result);
