@@ -1,4 +1,5 @@
 <?php
+
 class db {
 	public $dbh;
 	public function __construct() {
