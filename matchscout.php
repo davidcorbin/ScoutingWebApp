@@ -22,5 +22,24 @@ if (!isset($check)) {
 	die();
 }
 
-$html->matchscout();
+// Query database
+$result = $database->fetch("SELECT number FROM teams");
+
+// Create team select element from database values
+$teamselect = '
+<div class="form-group">
+	<label for="status" class="col-lg-2 control-label">Teams</label>
+	<div class="col-lg-10">
+		<select name="status">
+';
+for ($i = 0; $i < count($result); $i++) {
+	$teamselect .= '<option name="'.$result[$i]['number'].'">'.$result[$i]['number'].'</option>';
+}
+$teamselect .= '
+		</select>
+	</div>
+</div>
+';
+
+$html->matchscout($teamselect);
 ?>
