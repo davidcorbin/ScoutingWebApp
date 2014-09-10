@@ -7,40 +7,49 @@ $form = '
 		<div class="well">
 			<form class="form-horizontal" method="post" action="matchscout.php" autocomplete="off">
 				<fieldset>
-					<legend>Autonomous</legend>
-					<div class="form-group">
-						<label for="teamnumber" class="col-lg-2 control-label">Team Number</label>
-						<div class="col-lg-10">
- 							<input type="number" class="form-control" placeholder="" name="teamnumber" autocorrect="off">
-						</div>
-					</div>
+					<legend>Match Scout</legend>
 					
 					' . $teamselect . '
-                
+					
+					<br><legend>Autonomous</legend>
+					
 					<div class="form-group">
-						<label class="col-lg-2 control-label">Upload Image</label>
+						<label class="col-lg-2 control-label">Points</label>
 						<div class="col-lg-10">
 							<input type="checkbox" name="highgoal">&nbsp;High Goal<br>
 							<input type="checkbox" name="lowgoal">&nbsp;Low Goal<br>
-							<input type="checkbox" name="passing">&nbsp;Passing<br>
-							<input type="checkbox" name="receiving">&nbsp;Receiving<br>
-							<input type="checkbox" name="truss">&nbsp;Truss<br>
-							<input type="checkbox" name="autohigh">&nbsp;Auto High<br>
-							<input type="checkbox" name="autolow">&nbsp;Auto Low<br>
-							<input type="checkbox" name="tbauto">&nbsp;Two Ball Auto<br>
+							<input type="checkbox" name="twoball">&nbsp;Two Ball<br>
+							<input type="checkbox" name="driveforward">&nbsp;Drive Forward<br>
+							<input type="checkbox" name="defense">&nbsp;Defended<br>
 						</div>
 					</div>
-
-					<!--<div class="form-group">
-						<label for="upload" class="col-lg-2 control-label">Upload Image</label>
-						<div class="col-lg-10">
-							<div class="fileUpload">
-								<input type="file" class="upload" onchange="upload(this.files[0])">
-								<input type="hidden" name="link" id="link">
-							</div>
-						</div>
-					</div>//-->
-
+					
+					<br><legend>Teleoperated</legend>
+					
+					<p><strong>High Goals</strong></p>
+					<div class="btn-group btn-group-justified">
+						<div class="btn btn-default" id="highdec">-</div>
+						<div class="btn btn-default" id="highgoals">0</div>
+						<input type="hidden" value="0" name="highgoals">
+						<div class="btn btn-default" id="highinc">+</div>
+					</div>
+					<br>
+					<p><strong>Low Goals</strong></p>
+					<div class="btn-group btn-group-justified">
+						<div class="btn btn-default" id="lowdec">-</div>
+						<div class="btn btn-default" id="lowgoals">0</div>
+						<input type="hidden" value="0" name="lowgoals">
+						<div class="btn btn-default" id="lowinc">+</div>
+					</div>
+					<br>
+					<p><strong>Truss</strong></p>
+					<div class="btn-group btn-group-justified">
+						<div class="btn btn-default" id="trussdec">-</div>
+						<div class="btn btn-default" id="trusss">0</div>
+						<input type="hidden" value="0" name="trusss">
+						<div class="btn btn-default" id="trussinc">+</div>
+					</div>
+					
 					<div class="form-group">
 						<label for="textArea" class="col-lg-2 control-label">Comments</label>
 						<div class="col-lg-10">
@@ -58,4 +67,31 @@ $form = '
 		</div>
 	</div>
 </div>
+
+<script>
+function dec(elem) {
+	document.getElementById(elem).innerHTML = parseInt(document.getElementById(elem).innerHTML) - 1;
+	document.getElementsByName(elem)[0].value = parseInt(document.getElementById(elem).innerHTML);
+}
+
+function increm(elem) {
+	document.getElementById(elem).innerHTML = parseInt(document.getElementById(elem).innerHTML) + 1;
+	document.getElementsByName(elem)[0].value = parseInt(document.getElementById(elem).innerHTML);
+}
+
+window.onload = function() {
+	var clicktest = "ontouchstart" in window ? "touchstart" : "click";
+	document.getElementById("highdec").addEventListener(clicktest, function(){dec("highgoals");}, false);
+	
+	document.getElementById("highinc").addEventListener(clicktest, function(){increm("highgoals");}, false);
+	
+	document.getElementById("lowdec").addEventListener(clicktest, function(){dec("lowgoals");}, false);
+	
+	document.getElementById("lowinc").addEventListener(clicktest, function(){increm("lowgoals");}, false);
+	
+	document.getElementById("trussdec").addEventListener(clicktest, function(){dec("trusss");}, false);
+	
+	document.getElementById("trussinc").addEventListener(clicktest, function(){increm("trusss");}, false);
+}
+</script>
 ';
