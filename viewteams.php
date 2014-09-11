@@ -27,6 +27,7 @@ $table = "<div style='overflow:auto;' class='table-responsive'><table class='tab
 <tr>
 <th>Image</th>
 <th>#</th>
+<th>Name</th>
 <th>Status</th>
 <th>High Goal</th>
 <th>Low Goal</th>
@@ -57,6 +58,7 @@ for ($i = 0; $i < count($result); $i++) {
 	$table  .= "<tr>
 <td><a href='" . $result[$i]['image'] . "'><img src='".$result[$i]['image']."' style='max-height:100px; max-width:100px;'></a></td>
 <td>".$result[$i]['number']."</td>
+<td>".$result[$i]['name']."</td>
 <td>".$result[$i]['status']."</td>
 <td>".$result[$i]['highgoal']."</td>
 <td>".$result[$i]['lowgoal']."</td>

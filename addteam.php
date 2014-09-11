@@ -52,7 +52,7 @@ if (!empty($_POST)) {
 		if ($_POST["comments"] == "") 
 			$_POST["comments"] = " ";
 		
-		$database->query("INSERT INTO teams(number, status, highgoal, lowgoal, passing, receiving, truss, autohigh, autolow, twoballauto, image, comments) VALUES (" . $_POST["teamnumber"] . ",'" . $_POST["status"] . "'," . $a . "," . $b . "," . $c . "," . $d . "," . $e . "," . $f . "," . $g . "," . $h . ",'" . $_POST["link"] . "','" . addslashes($_POST["comments"]) . "')");
+		$database->query("INSERT INTO teams(number, name, status, highgoal, lowgoal, passing, receiving, truss, autohigh, autolow, twoballauto, image, comments) VALUES (" . $_POST["teamnumber"] . ",'" . $_POST["teamname"] . "','" .  $_POST["status"] . "'," . $a . "," . $b . "," . $c . "," . $d . "," . $e . "," . $f . "," . $g . "," . $h . ",'" . $_POST["link"] . "','" . addslashes($_POST["comments"]) . "')");
 		$html->choose("<span class='glyphicon glyphicon-floppy-saved'></span>&nbsp;&nbsp; Successfully added team");
 	}
 }

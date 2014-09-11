@@ -8,13 +8,19 @@ $form = '
 <fieldset>
 <legend>Add Team</legend>
 <div class="form-group">
-<label for="inputEmail" class="col-lg-2 control-label">Team Number</label> 
+<label for="teamnumber" class="col-lg-2 control-label">Team Number</label> 
 <div class="col-lg-10">
-<input type="number" class="form-control" id="teamnumber" placeholder="" name="teamnumber" autocorrect="off">
+<input type="number" class="form-control" id="teamnumber" placeholder="4467" name="teamnumber" autocorrect="off">
+</div>
+
+<label for="teamname" class="col-lg-2 control-label">Team Name</label> 
+<div class="col-lg-10">
+<input type="text" class="form-control" placeholder="Titanium Titans" name="teamname" autocorrect="off">
 </div>
 </div>
+
 <div class="form-group">
-<label for="inputEmail" class="col-lg-2 control-label">Status</label>
+<label for="status" class="col-lg-2 control-label">Status</label>
 <div class="col-lg-10">
 <select name="status">
 <option value="working" name="working">Working</option>
@@ -24,7 +30,7 @@ $form = '
 </div>
 </div>
 <div class="form-group">
-<label for="inputEmail" class="col-lg-2 control-label">Functions</label>
+<label for="functions" class="col-lg-2 control-label">Functions</label>
 <div class="col-lg-10">
 <input type="checkbox" name="highgoal">&nbsp;High Goal<br>
 <input type="checkbox" name="lowgoal">&nbsp;Low Goal<br>

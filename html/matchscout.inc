@@ -53,7 +53,7 @@ $form = '
 					<div class="form-group">
 						<label for="textArea" class="col-lg-2 control-label">Comments</label>
 						<div class="col-lg-10">
-							<textarea class="form-control" rows="3" id="textArea"></textarea>
+							<textarea class="form-control" rows="3" id="textArea" name="comments"></textarea>
 						</div>
 					</div>
 
@@ -80,7 +80,7 @@ function increm(elem) {
 }
 
 window.onload = function() {
-	var clicktest = "ontouchstart" in window ? "touchstart" : "click";
+	var clicktest = "ontouchstart" in window ? "touchend" : "click";
 	document.getElementById("highdec").addEventListener(clicktest, function(){dec("highgoals");}, false);
 	
 	document.getElementById("highinc").addEventListener(clicktest, function(){increm("highgoals");}, false);

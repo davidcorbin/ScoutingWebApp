@@ -22,18 +22,32 @@ if (!isset($check)) {
 	die();
 }
 
+if (!empty($_POST)) {
+	print_r($_POST);
+	
+	$autohigh = isset($_POST["highgoal"])?1:0;
+	$autolow = isset($_POST["lowgoal"])?1:0;
+	$twoball = isset($_POST["twoball"])?1:0;
+	$forward = isset($_POST["driveforward"])?1:0;
+	$defended = isset($_POST["defense"])?1:0;
+	
+	echo "INSERT INTO match ('number', 'autohigh', 'autolow', 'twoball', 'forward', 'defended', 'highgoals', 'lowgoals', 'truss', 'comments') VALUES (".$_POST["team"].",".$autohigh.",".$autolow.",".$twoball.",".$forward.",".$defended.",".$_POST["highgoals"].",".$_POST["lowgoals"].",".$_POST["trusss"].",'".$_POST["comments"]."')";
+	
+	$database->query("INSERT INTO match (number, autohigh, autolow, twoball, forward, defended, highgoals, lowgoals, truss, comments) VALUES (".$_POST["team"].",".$autohigh.",".$autolow.",".$twoball.",".$forward.",".$defended.",".$_POST["highgoals"].",".$_POST["lowgoals"].",".$_POST["trusss"].",'".$_POST["comments"]."')");
+}
+
 // Query database
-$result = $database->fetch("SELECT number FROM teams");
+$result = $database->fetch("SELECT number, name FROM teams ORDER BY number");
 
 // Create team select element from database values
 $teamselect = '
 <div class="form-group">
-	<label for="status" class="col-lg-2 control-label">Team</label>
+	<label for="team" class="col-lg-2 control-label">Team</label>
 	<div class="col-lg-10">
-		<select name="status">
+		<select name="team">
 ';
 for ($i = 0; $i < count($result); $i++) {
-	$teamselect .= '<option name="'.$result[$i]['number'].'">'.$result[$i]['number'].'</option>';
+	$teamselect .= '<option name="'.$result[$i]['number'].'">'.$result[$i]['number']/*.' - '.$result[$i]['name']*/.'</option>';
 }
 $teamselect .= '
 		</select>
