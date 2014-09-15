@@ -22,21 +22,21 @@ if (!isset($check)) {
 	die();
 }
 
+// Add match scouting data to database 
 if (!empty($_POST)) {
-	print_r($_POST);
-	
 	$autohigh = isset($_POST["highgoal"])?1:0;
 	$autolow = isset($_POST["lowgoal"])?1:0;
 	$twoball = isset($_POST["twoball"])?1:0;
 	$forward = isset($_POST["driveforward"])?1:0;
 	$defended = isset($_POST["defense"])?1:0;
 	
-	//echo "INSERT INTO match ('number', 'autohigh', 'autolow', 'twoball', 'forward', 'defended', 'highgoals', 'lowgoals', 'truss', 'comments') VALUES (".$_POST["team"].",".$autohigh.",".$autolow.",".$twoball.",".$forward.",".$defended.",".$_POST["highgoals"].",".$_POST["lowgoals"].",".$_POST["trusss"].",'".$_POST["comments"]."')";
-	
 	$database->query("INSERT INTO match_data (number, autohigh, autolow, twoball, forward, defended, highgoals, lowgoals, truss, comments) VALUES (".$_POST["team"].",".$autohigh.",".$autolow.",".$twoball.",".$forward.",".$defended.",".$_POST["highgoals"].",".$_POST["lowgoals"].",".$_POST["trusss"].",'".$_POST["comments"]."')");
+	
+	$html->choose("<span class='glyphicon glyphicon-floppy-saved'></span>&nbsp;&nbsp; Successfully added team");
 }
 
-// Query database
+
+// Query database to get data
 $result = $database->fetch("SELECT number, name FROM teams ORDER BY number");
 
 // Create team select element from database values

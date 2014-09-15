@@ -3,7 +3,11 @@
 class html {
 	// Default HTML template for content
 	private function main($content) {
+		// Add the html universal template
 		include 'html/main.inc';
+		
+		// Exit, guaranteeing page immediate load
+		exit();
 	}
 	
 	// Login page
