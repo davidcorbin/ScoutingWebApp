@@ -31,9 +31,9 @@ if (!empty($_POST)) {
 	$forward = isset($_POST["driveforward"])?1:0;
 	$defended = isset($_POST["defense"])?1:0;
 	
-	echo "INSERT INTO match ('number', 'autohigh', 'autolow', 'twoball', 'forward', 'defended', 'highgoals', 'lowgoals', 'truss', 'comments') VALUES (".$_POST["team"].",".$autohigh.",".$autolow.",".$twoball.",".$forward.",".$defended.",".$_POST["highgoals"].",".$_POST["lowgoals"].",".$_POST["trusss"].",'".$_POST["comments"]."')";
+	//echo "INSERT INTO match ('number', 'autohigh', 'autolow', 'twoball', 'forward', 'defended', 'highgoals', 'lowgoals', 'truss', 'comments') VALUES (".$_POST["team"].",".$autohigh.",".$autolow.",".$twoball.",".$forward.",".$defended.",".$_POST["highgoals"].",".$_POST["lowgoals"].",".$_POST["trusss"].",'".$_POST["comments"]."')";
 	
-	$database->query("INSERT INTO match (number, autohigh, autolow, twoball, forward, defended, highgoals, lowgoals, truss, comments) VALUES (".$_POST["team"].",".$autohigh.",".$autolow.",".$twoball.",".$forward.",".$defended.",".$_POST["highgoals"].",".$_POST["lowgoals"].",".$_POST["trusss"].",'".$_POST["comments"]."')");
+	$database->query("INSERT INTO match_data (number, autohigh, autolow, twoball, forward, defended, highgoals, lowgoals, truss, comments) VALUES (".$_POST["team"].",".$autohigh.",".$autolow.",".$twoball.",".$forward.",".$defended.",".$_POST["highgoals"].",".$_POST["lowgoals"].",".$_POST["trusss"].",'".$_POST["comments"]."')");
 }
 
 // Query database
