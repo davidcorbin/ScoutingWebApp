@@ -42,25 +42,25 @@ class html {
 	
 	
 	// Match scouting page
-	public function matchscout($teamselect) {
+	public function matchscout($teamselect, $matchnum) {
 		include 'html/matchscout.inc';
 		$this->main($form);
 	}
 	
 	
-	
+	// View teams page
 	public function viewteams($data) {
 		$this->main($data);
 	}
 	
 	
-	
+	// Group chat room page
 	public function chat($info) {		
 		$this->main($info);
 	}
 	
 	
-	
+	// Add user to database page
 	public function adduser($error) {
 		include 'html/adduser.inc';
 		$this->main($error . $form);

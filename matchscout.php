@@ -22,7 +22,10 @@ if (!isset($check)) {
 	die();
 }
 
-// Add match scouting data to database 
+
+/*** Insert Data into Database ***/
+
+
 if (!empty($_POST)) {
 	$autohigh = isset($_POST["highgoal"])?1:0;
 	$autolow = isset($_POST["lowgoal"])?1:0;
@@ -30,10 +33,13 @@ if (!empty($_POST)) {
 	$forward = isset($_POST["driveforward"])?1:0;
 	$defended = isset($_POST["defense"])?1:0;
 	
-	$database->query("INSERT INTO match_data (number, autohigh, autolow, twoball, forward, defended, highgoals, lowgoals, truss, comments) VALUES (".$_POST["team"].",".$autohigh.",".$autolow.",".$twoball.",".$forward.",".$defended.",".$_POST["highgoals"].",".$_POST["lowgoals"].",".$_POST["trusss"].",'".$_POST["comments"]."')");
+	$database->query("INSERT INTO match_data (`match`, number, autohigh, autolow, twoball, forward, defended, highgoals, lowgoals, truss, comments) VALUES (".$_POST["match"].",".$_POST["team"].",".$autohigh.",".$autolow.",".$twoball.",".$forward.",".$defended.",".$_POST["highgoals"].",".$_POST["lowgoals"].",".$_POST["trusss"].",'".$_POST["comments"]."')");
 	
 	$html->choose("<span class='glyphicon glyphicon-floppy-saved'></span>&nbsp;&nbsp; Successfully added team");
 }
+
+
+/*** Generate team selector ***/
 
 
 // Query database to get data
@@ -47,7 +53,8 @@ $teamselect = '
 		<select name="team">
 ';
 for ($i = 0; $i < count($result); $i++) {
-	$teamselect .= '<option name="'.$result[$i]['number'].'">'.$result[$i]['number']/*.' - '.$result[$i]['name']*/.'</option>';
+	$teamselect .= '<option name="'.$result[$i]['number'].'">'.$result[$i]['number'].'</option>';
+	echo $result[$i]['match'];
 }
 $teamselect .= '
 		</select>
@@ -55,5 +62,28 @@ $teamselect .= '
 </div>
 ';
 
-$html->matchscout($teamselect);
+
+/*** Recommend next match number ***/
+
+
+// Default number
+$matchnum = 1;
+
+// Fetch the match numbers from database
+$matches = $database->fetch("SELECT `match` FROM match_data");
+
+for ($i = 0; $i < count($matches); $i++) {
+	
+	// Check for the mighest match number 
+	if (intval($matches[$i]["match"]) >= $matchnum) {
+		// Add 1 to the highest match number
+		$matchnum = $matches[$i]["match"] + 1;
+	}
+}
+
+
+/*** Build Page ***/
+
+
+$html->matchscout($teamselect, $matchnum);
 ?>

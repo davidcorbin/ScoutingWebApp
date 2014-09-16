@@ -22,59 +22,55 @@ if (!isset($check)) {
 	die();
 }
 
-$table = "<div style='overflow:auto;' class='table-responsive'><table class='table table-striped' >
+$table = "<div style='overflow:auto;' class='table-responsive'><table class='table table-striped'>
 <thead>
 <tr>
-<th>Image</th>
-<th>#</th>
-<th>Name</th>
-<th>Status</th>
-<th>High Goal</th>
-<th>Low Goal</th>
-<th>Passing</th>
-<th>Receiving</th>
-<th>Truss</th>
+<th>Match</th>
+<th>Team</th>
 <th>Auto. High</th>
 <th>Auto. Low</th>
 <th>Two Ball Auto</th>
+<th>Auto. Forward</th>
+<th>Defended</th>
+<th>High Goals</th>
+<th>Low Goals</th>
+<th>Truss</th>
 <th>Comments</th>
 </tr>
 </thead><tbody>";
 
-$result = $database->fetch("SELECT * FROM teams ORDER BY number");
+$result = $database->fetch("SELECT * FROM match_data");
 
 for ($i = 0; $i < count($result); $i++) {
 
-	foreach ($result[$i] as $key => $a) {
-		if ($a === "0") {
-			$result[$i][$key] = "No";
-		}
+	foreach ($result[$i] as $key => $value) {
+		if ($key === "autohigh" || $key === "autolow" || $key === "twoball" || $key === "forward" || $key === "defended") {
+			if ($value === "0") {
+				$result[$i][$key] = "No";
+			}
 		
-		if ($a === "1") {
-			$result[$i][$key] = "Yes";
+			if ($value === "1") {
+				$result[$i][$key] = "Yes";
+			}
 		}
 	}
 
 	$table  .= "<tr>
-<td><a href='" . $result[$i]['image'] . "'><img src='".$result[$i]['image']."' style='max-height:100px; max-width:100px;'></a></td>
+<td>".$result[$i]['match']."</td>
 <td>".$result[$i]['number']."</td>
-<td>".$result[$i]['name']."</td>
-<td>".$result[$i]['status']."</td>
-<td>".$result[$i]['highgoal']."</td>
-<td>".$result[$i]['lowgoal']."</td>
-<td>".$result[$i]['passing']."</td>
-<td>".$result[$i]['receiving']."</td>
-<td>".$result[$i]['truss']."</td>
 <td>".$result[$i]['autohigh']."</td>
 <td>".$result[$i]['autolow']."</td>
-<td>".$result[$i]['twoballauto']."</td>
+<td>".$result[$i]['twoball']."</td>
+<td>".$result[$i]['forward']."</td>
+<td>".$result[$i]['defended']."</td>
+<td>".$result[$i]['highgoals']."</td>
+<td>".$result[$i]['lowgoals']."</td>
+<td>".$result[$i]['truss']."</td>
 <td>".$result[$i]['comments']."</td>
 </tr>";
 }
 
-$table .= "</tbody></table></div>
-
-";
+$table .= "</tbody></table></div>";
 
 $html->viewteams($table);
 

@@ -15,5 +15,6 @@ $listgroup = '
 <p class="list-group-item-text">See a list of the added teams</p> </a>
 		<a href="matchscout.php" class="list-group-item"> <h4 class="list-group-item-heading">Match Scout</h4> <p class="list-group-item-text">Keep statistics about teams</p> </a>
 		<a href="adduser.php" class="list-group-item"> <h4 class="list-group-item-heading">Add User</h4> <p class="list-group-item-text">Add user to database</p> </a>
+		<a href="stats.php" class="list-group-item"> <h4 class="list-group-item-heading">Stats</h4> <p class="list-group-item-text">Match info about each team</p> </a>
 		<!--<a href="sql.php" class="list-group-item"> <h4 class="list-group-item-heading">SQL Terminal</h4> <p class="list-group-item-text">Control the database</p> </a>//-->
 		</div>';

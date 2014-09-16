@@ -5,11 +5,18 @@ $form = '
 <div class="row">
 	<div class="col-lg-6">
 		<div class="well">
-			<form class="form-horizontal" method="post" action="matchscout.php" autocomplete="off">
+			<form class="form-horizontal" method="post" action="matchscout.php" autocomplete="off" onsubmit="return validate();">
 				<fieldset>
 					<legend>Match Scout</legend>
 					
 					' . $teamselect . '
+					
+					<div class="form-group">
+						<label class="col-lg-2 control-label">Match Number</label>
+						<div class="col-lg-10">
+							<input type="number" name="match" class="form-control" value="'.$matchnum.'">
+						</div>
+					</div>
 					
 					<br><legend>Autonomous</legend>
 					
@@ -30,7 +37,7 @@ $form = '
 					<div class="btn-group btn-group-justified">
 						<div class="btn btn-default" id="highdec">-</div>
 						<div class="btn btn-default" id="highgoals">0</div>
-						<input type="hidden" value="0" name="highgoals">
+						<input type="hidden" value="0" name="highgoals" id="highgoals">
 						<div class="btn btn-default" id="highinc">+</div>
 					</div>
 					<br>
@@ -38,7 +45,7 @@ $form = '
 					<div class="btn-group btn-group-justified">
 						<div class="btn btn-default" id="lowdec">-</div>
 						<div class="btn btn-default" id="lowgoals">0</div>
-						<input type="hidden" value="0" name="lowgoals">
+						<input type="hidden" value="0" name="lowgoals" id="lowgoals">
 						<div class="btn btn-default" id="lowinc">+</div>
 					</div>
 					<br>
@@ -46,7 +53,7 @@ $form = '
 					<div class="btn-group btn-group-justified">
 						<div class="btn btn-default" id="trussdec">-</div>
 						<div class="btn btn-default" id="trusss">0</div>
-						<input type="hidden" value="0" name="trusss">
+						<input type="hidden" value="0" name="trusss" id="trusss">
 						<div class="btn btn-default" id="trussinc">+</div>
 					</div>
 					
@@ -69,6 +76,15 @@ $form = '
 </div>
 
 <script>
+
+function validate() {
+	if (parseInt(document.getElementById("highgoals").innerHTML) < 0 || parseInt(document.getElementById("lowgoals").innerHTML) < 0 || parseInt(document.getElementById("trusss").innerHTML) < 0) {
+		return false;
+	}
+	
+	return true;
+}
+
 function dec(elem) {
 	document.getElementById(elem).innerHTML = parseInt(document.getElementById(elem).innerHTML) - 1;
 	document.getElementsByName(elem)[0].value = parseInt(document.getElementById(elem).innerHTML);

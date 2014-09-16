@@ -1,1 +1,1 @@
-http://181.224.138.12/~titaniu6/ScoutingWebApp/login.php
+http://181.224.138.12/~titaniu6/ScoutingWebApp/choose.php
